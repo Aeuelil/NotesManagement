@@ -1,0 +1,98 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Notes";
+}
+<div class="alert alert-success collapse" role="alert">
+    <span class="alert-success-message"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger collapse" role="alert">
+    <span class="alert-danger-message"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newNoteModal">Create Note</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCategoryModal">Create Category</button>
+</div>
+
+
+<div class="modal" id="newNoteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span class="fw-bold">Note:</span>
+                <textarea class="form-control" id="newNoteBody" rows="6" placeholder="Please enter new note"></textarea>
+                <span class="fw-bold">Category:</span>
+                <select class="form-select" id="newNoteCategories" multiple aria-label="multiple select">
+                </select>
+                <p class="fs-6">Use ctrl on Windows, or command on Mac to select multiple categories.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="newNoteCreate" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="displayNoteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="deleteAlert" class="alert alert-danger collapse" role="alert">
+                    <span>Are you sure you want to delete this note?</span>
+                    <button id="displayNoteDeleteYes" type="button" class="btn btn-danger">Yes</button>
+                    <button id="displayNoteDeleteNo" type="button" class="btn btn-secondary">No</button>
+                </div>
+                <input type="hidden" id="displayNoteId" />
+                <span class="fw-bold">Note:</span>
+                <p id="noteHtml"></p>
+                <span class="fw-bold">Categories:</span>
+                <p id="noteCategories"></p>
+                <span class="fw-bold">Timestamp:</span>
+                <p id="noteDate"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="displayNoteDelete">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="newCategoryModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="category-name" class="col-form-label">Category:</label>
+                        <input type="text" class="form-control" id="category-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="createCategory" type="button" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="note-group">
+
+</div>
